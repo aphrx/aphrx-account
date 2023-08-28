@@ -1,14 +1,15 @@
-import 'package:account_frontend/login_page.dart';
+import 'package:account_frontend/screens/account_mgmt/home_page.dart';
+import 'package:account_frontend/screens/signup_page.dart';
 import 'package:flutter/material.dart';
 
-class SignupPage extends StatefulWidget {
-  const SignupPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +36,7 @@ class _SignupPageState extends State<SignupPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Text('Create an account',
+                          const Text('Sign in',
                               style: TextStyle(
                                   fontWeight: FontWeight.w200,
                                   fontSize: 24,
@@ -71,20 +72,6 @@ class _SignupPageState extends State<SignupPage> {
                           Container(
                               decoration: BoxDecoration(
                                   color: Colors.white,
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 20),
-                                  child: TextField(
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: 'Confirm Password'),
-                                  ))),
-                          const SizedBox(height: 20),
-                          Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
                                   borderRadius: BorderRadius.circular(5)),
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
@@ -94,25 +81,30 @@ class _SignupPageState extends State<SignupPage> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5),
                                     )),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HomePage()));
+                                },
                                 child: Container(
                                     padding: const EdgeInsets.fromLTRB(
                                         60, 15, 60, 15),
-                                    child: const Text("Create account")),
+                                    child: const Text("Sign in")),
                               )),
                           const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("Already have an account? "),
+                              Text("New to Aphrx? "),
                               GestureDetector(
                                 onTap: () {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => LoginPage()));
+                                          builder: (context) => SignupPage()));
                                 },
-                                child: Text("Sign in",
+                                child: Text("Create account",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         color: Colors.blue.shade800)),
@@ -122,10 +114,7 @@ class _SignupPageState extends State<SignupPage> {
                           const SizedBox(height: 20),
                           const Divider(),
                           const SizedBox(height: 20),
-                          const Text(
-                              "By creating an Aphrx account, you agree to our terms and conditions.",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 11))
+                          const Text("Trouble signing in?")
                         ])))));
   }
 }

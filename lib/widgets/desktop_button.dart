@@ -1,11 +1,14 @@
-import 'package:account_frontend/login_page.dart';
 import 'package:flutter/material.dart';
 
 class DesktopButton extends StatelessWidget {
   final Widget buttonIcon;
   final Widget buttonText;
+  final Function onPressed;
 
-  DesktopButton({required this.buttonIcon, required this.buttonText});
+  DesktopButton(
+      {required this.buttonIcon,
+      required this.buttonText,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +23,7 @@ class DesktopButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             )),
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => LoginPage()));
-        },
+        onPressed: () => onPressed,
         child: Container(
             padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
             child: Row(

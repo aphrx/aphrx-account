@@ -1,6 +1,6 @@
-import 'package:account_frontend/desktop_body.dart';
-import 'package:account_frontend/mobile_body.dart';
-import 'package:account_frontend/responsive_layout.dart';
+import 'package:account_frontend/screens/account_mgmt/desktop_body.dart';
+import 'package:account_frontend/screens/account_mgmt/mobile_body.dart';
+import 'package:account_frontend/screens/account_mgmt/responsive_layout.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

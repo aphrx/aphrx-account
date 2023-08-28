@@ -1,7 +1,6 @@
+import 'package:account_frontend/screens/login_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'signup_page.dart';
 import 'package:flutter/material.dart';
-import 'login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +15,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.blue),
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          textTheme: GoogleFonts.outfitTextTheme(
+            Theme.of(context).textTheme,
+          ),
+        ),
         home: LoginPage());
     // home: SignupPage());
   }
