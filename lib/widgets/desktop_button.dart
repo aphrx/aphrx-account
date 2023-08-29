@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 class DesktopButton extends StatelessWidget {
   final Widget buttonIcon;
   final Widget buttonText;
-  final Function onPressed;
+  final Function pressed;
 
-  DesktopButton(
-      {required this.buttonIcon,
+  const DesktopButton(
+      {Key? key,
+      required this.buttonIcon,
       required this.buttonText,
-      required this.onPressed});
+      required this.pressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      SizedBox(height: 10),
+      const SizedBox(height: 10),
       TextButton(
         style: TextButton.styleFrom(
             primary: Colors.white,
@@ -23,9 +25,9 @@ class DesktopButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             )),
-        onPressed: () => onPressed,
+        onPressed: () => pressed,
         child: Container(
-            padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
+            padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
             child: Row(
               // mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

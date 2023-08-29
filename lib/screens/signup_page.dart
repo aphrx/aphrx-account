@@ -15,7 +15,7 @@ class _SignupPageState extends State<SignupPage> {
         body: SafeArea(
             child: Center(
                 child: Container(
-                    padding: EdgeInsets.fromLTRB(60, 20, 60, 20),
+                    padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
                     decoration: BoxDecoration(
                         // color: Colors.white,
                         // boxShadow: [
@@ -104,13 +104,14 @@ class _SignupPageState extends State<SignupPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("Already have an account? "),
+                              const Text("Already have an account? "),
                               GestureDetector(
                                 onTap: () {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => LoginPage()));
+                                          builder: (context) =>
+                                              const LoginPage()));
                                 },
                                 child: Text("Sign in",
                                     style: TextStyle(

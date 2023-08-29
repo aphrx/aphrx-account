@@ -15,10 +15,10 @@ class _DesktopBodyState extends State<DesktopBody> {
   int currIndex = 0;
 
   Widget contentSwitch(currIndex) {
-    if (currIndex == 0) return Profile();
-    if (currIndex == 1) return Apps();
+    if (currIndex == 0) return const Profile();
+    if (currIndex == 1) return const Apps();
     if (currIndex == 2) {
-      return Settings();
+      return const Settings();
     } else {
       return const Placeholder();
     }
@@ -32,8 +32,6 @@ class _DesktopBodyState extends State<DesktopBody> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(currIndex.toString()),
-        ElevatedButton(onPressed: () => changeIndex(1), child: Text("press")),
         SideBar(callback: changeIndex),
         Expanded(
           flex: 7,

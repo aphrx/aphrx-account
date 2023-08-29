@@ -6,7 +6,7 @@ typedef Callback = void Function(int val);
 class SideBar extends StatelessWidget {
   const SideBar({Key? key, required this.callback}) : super(key: key);
 
-  final Callback callback;
+  final void Function(int) callback;
 
   @override
   Widget build(BuildContext context) {
@@ -32,51 +32,149 @@ class SideBar extends StatelessWidget {
                 children: [
                   Container(
                       padding: const EdgeInsets.all(20),
-                      child:
-                          //  Image.asset(
-                          //   'assets/images/logo.png',
-                          //   width: 80,
-                          // )
-                          const Text("aphrx.",
+                      child: RichText(
+                          text: TextSpan(
+                              text: "a",
                               style: TextStyle(
                                   fontSize: 30,
+                                  color: Colors.blue.shade800,
                                   fontWeight: FontWeight.w800,
-                                  letterSpacing: -2))),
+                                  letterSpacing: -2),
+                              children: [
+                            const TextSpan(
+                                text: "phrx",
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w800,
+                                    letterSpacing: -2)),
+                            TextSpan(
+                                text: ".",
+                                style: TextStyle(
+                                    fontSize: 50,
+                                    color: Colors.blue.shade800,
+                                    fontWeight: FontWeight.w800,
+                                    letterSpacing: -2)),
+                            // TextSpan(
+                            //     text: "account",
+                            //     style: TextStyle(
+                            //         fontSize: 30,
+                            //         color: Colors.blue.shade800,
+                            //         fontWeight: FontWeight.w800,
+                            //         letterSpacing: -2))
+                          ]))),
                   const Divider(),
-                  DesktopButton(
-                      buttonIcon: const Icon(
-                        Icons.person_2_outlined,
-                        color: Colors.black,
-                        size: 24.0,
-                        semanticLabel: 'Profile icon',
-                      ),
-                      buttonText: const Text("Profile",
-                          style: TextStyle(fontSize: 16, color: Colors.black),
-                          textAlign: TextAlign.center),
-                      onPressed: () => callback(0)),
-                  DesktopButton(
-                      buttonIcon: const Icon(
-                        Icons.apps,
-                        color: Colors.black,
-                        size: 24.0,
-                        semanticLabel: 'App icon',
-                      ),
-                      buttonText: const Text("Apps",
-                          style: TextStyle(fontSize: 16, color: Colors.black),
-                          textAlign: TextAlign.center),
-                      onPressed: () => callback(1)),
-                  DesktopButton(
-                    buttonIcon: const Icon(
-                      Icons.settings_outlined,
-                      color: Colors.black,
-                      size: 24.0,
-                      semanticLabel: 'Settings icon',
-                    ),
-                    buttonText: const Text("Settings",
-                        style: TextStyle(fontSize: 16, color: Colors.black),
-                        textAlign: TextAlign.center),
-                    onPressed: () => callback(2),
-                  ),
+                  Column(children: [
+                    const SizedBox(height: 10),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          primary: Colors.white,
+                          foregroundColor: Colors.blue.shade800,
+                          minimumSize: const Size.fromHeight(50),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          )),
+                      onPressed: () => callback(0),
+                      child: Container(
+                          padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+                          child: const Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              // Image.asset(
+                              //   buttonImg,
+                              //   width: 20,
+                              // ),
+                              Icon(
+                                Icons.person_2_outlined,
+                                color: Colors.black,
+                                size: 24.0,
+                                semanticLabel: 'Profile icon',
+                              ),
+
+                              SizedBox(width: 10),
+                              Text("Profile",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                  textAlign: TextAlign.center)
+                            ],
+                          )),
+                    )
+                  ]),
+                  Column(children: [
+                    const SizedBox(height: 10),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          primary: Colors.white,
+                          foregroundColor: Colors.blue.shade800,
+                          minimumSize: const Size.fromHeight(50),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          )),
+                      onPressed: () => callback(1),
+                      child: Container(
+                          padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+                          child: const Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              // Image.asset(
+                              //   buttonImg,
+                              //   width: 20,
+                              // ),
+                              Icon(
+                                Icons.apps,
+                                color: Colors.black,
+                                size: 24.0,
+                                semanticLabel: 'App icon',
+                              ),
+
+                              SizedBox(width: 10),
+                              Text("Apps",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                  textAlign: TextAlign.center)
+                            ],
+                          )),
+                    )
+                  ]),
+                  Column(children: [
+                    const SizedBox(height: 10),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          primary: Colors.white,
+                          foregroundColor: Colors.blue.shade800,
+                          minimumSize: const Size.fromHeight(50),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          )),
+                      onPressed: () => callback(2),
+                      child: Container(
+                          padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+                          child: const Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              // Image.asset(
+                              //   buttonImg,
+                              //   width: 20,
+                              // ),
+                              Icon(
+                                Icons.settings_outlined,
+                                color: Colors.black,
+                                size: 24.0,
+                                semanticLabel: 'Settings icon',
+                              ),
+
+                              SizedBox(width: 10),
+                              Text("Settings",
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                  textAlign: TextAlign.center)
+                            ],
+                          )),
+                    )
+                  ]),
                   Expanded(child: Container()),
                   const Divider(),
                   DesktopButton(
@@ -90,7 +188,7 @@ class SideBar extends StatelessWidget {
                       buttonText: const Text("Logout",
                           style: TextStyle(fontSize: 16, color: Colors.red),
                           textAlign: TextAlign.center),
-                      onPressed: () => null)
+                      pressed: () => null)
                 ],
               ))),
     );

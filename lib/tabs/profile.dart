@@ -1,6 +1,9 @@
+import 'package:account_frontend/widgets/profile_links.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
+  const Profile({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,16 +19,45 @@ class Profile extends StatelessWidget {
                   child: Image.asset('assets/images/avatar.png',
                       fit: BoxFit.cover))),
         ),
-        Text("Amal Parameswaran",
+        const Text("Amal Parameswaran",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800)),
-        Text(
+        const Text(
           "Software Developer with a YouTube channel",
         ),
-        SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [Placeholder(), Placeholder()],
-        )
+
+        const SizedBox(height: 20),
+        const Text("About",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+
+        const SizedBox(height: 20),
+        const SizedBox(
+          width: 500,
+          child: Text(
+              "Hey! Welcome to my profile. My name is Amal and I am a Software Developer and a YouTuber. My current series is all about Ecosystems so check them out!"),
+        ),
+        const SizedBox(height: 20),
+        const Text("Links",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 20),
+
+        const ProfileLinks(
+            title: "Instagram", body: "View all my pictures here!"),
+        const SizedBox(height: 20),
+
+        const ProfileLinks(
+            title: "Website", body: "Check out my amazing website!"),
+        const SizedBox(height: 20),
+
+        const ProfileLinks(
+            title: "YouTube", body: "I have a YouTube channel as well!"),
+        const SizedBox(height: 20),
+        GestureDetector(
+          onTap: () => null,
+          child: Text("Edit Profile",
+              style: TextStyle(
+                  fontWeight: FontWeight.w600, color: Colors.blue.shade800)),
+        ),
+
         // TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
       ],
       crossAxisAlignment: CrossAxisAlignment.center,

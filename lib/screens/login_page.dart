@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
         body: SafeArea(
             child: Center(
                 child: Container(
-                    padding: EdgeInsets.fromLTRB(60, 20, 60, 20),
+                    padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
                     decoration: BoxDecoration(
                         // color: Colors.white,
                         // boxShadow: [
@@ -85,7 +85,8 @@ class _LoginPageState extends State<LoginPage> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => HomePage()));
+                                          builder: (context) =>
+                                              const HomePage()));
                                 },
                                 child: Container(
                                     padding: const EdgeInsets.fromLTRB(
@@ -96,13 +97,14 @@ class _LoginPageState extends State<LoginPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("New to Aphrx? "),
+                              const Text("New to Aphrx? "),
                               GestureDetector(
                                 onTap: () {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => SignupPage()));
+                                          builder: (context) =>
+                                              const SignupPage()));
                                 },
                                 child: Text("Create account",
                                     style: TextStyle(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppCard extends StatelessWidget {
-  const AppCard({Key? key, required this.title, required this.body})
+class SettingCard extends StatelessWidget {
+  const SettingCard({Key? key, required this.title, required this.body})
       : super(key: key);
 
   final String title;
@@ -13,7 +13,7 @@ class AppCard extends StatelessWidget {
         onTap: () => null,
         child: Container(
             // width: double.infinity,
-            width: 350,
+            width: 250,
             decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: Colors.grey),
@@ -23,7 +23,6 @@ class AppCard extends StatelessWidget {
             child: Expanded(
                 child: Row(
               children: [
-                const SizedBox(width: 50, child: Placeholder()),
                 const SizedBox(width: 10),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(title, style: TextStyle(fontWeight: FontWeight.bold)),

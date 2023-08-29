@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppCard extends StatelessWidget {
-  const AppCard({Key? key, required this.title, required this.body})
+class ProfileLinks extends StatelessWidget {
+  const ProfileLinks({Key? key, required this.title, required this.body})
       : super(key: key);
 
   final String title;
