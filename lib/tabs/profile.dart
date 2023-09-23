@@ -2,7 +2,8 @@ import 'package:account_frontend/widgets/profile_links.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+  var user;
+  Profile({Key? key, required user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,7 @@ class Profile extends StatelessWidget {
                   child: Image.asset('assets/images/avatar.png',
                       fit: BoxFit.cover))),
         ),
-        const Text("Amal Parameswaran",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800)),
+        Text(user, style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800)),
         const Text(
           "Software Developer with a YouTube channel",
         ),

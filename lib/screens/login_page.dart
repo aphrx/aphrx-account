@@ -1,3 +1,4 @@
+import 'package:account_frontend/api/auth.dart';
 import 'package:account_frontend/screens/account_mgmt/home_page.dart';
 import 'package:account_frontend/screens/signup_page.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,34 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void loginClick() async {
+    final res = await Login(usernameController.text, passwordController.text);
+    print(res.statusCode);
+    if (res.statusCode == 200) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
+    } else {
+      print('Error Code: ' + res.statusCode);
+      print(res.body);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,19 +46,8 @@ class _LoginPageState extends State<LoginPage> {
             child: Center(
                 child: Container(
                     padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
-                    decoration: BoxDecoration(
-                        // color: Colors.white,
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //     color: Colors.grey.withOpacity(0.5),
-                        //     spreadRadius: 5,
-                        //     blurRadius: 7,
-                        //     offset: const Offset(
-                        //         0, 3), // changes position of shadow
-                        //   ),
-                        // ],
-                        // color: Colors.blue[300],
-                        borderRadius: BorderRadius.circular(5)),
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(5)),
                     width: 500,
                     height: 500,
                     child: Column(
@@ -47,10 +65,12 @@ class _LoginPageState extends State<LoginPage> {
                                   color: Colors.white,
                                   border: Border.all(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(5)),
-                              child: const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
                                   child: TextField(
-                                    decoration: InputDecoration(
+                                    controller: usernameController,
+                                    decoration: const InputDecoration(
                                         border: InputBorder.none,
                                         hintText: 'Username'),
                                   ))),
@@ -60,11 +80,13 @@ class _LoginPageState extends State<LoginPage> {
                                   color: Colors.white,
                                   border: Border.all(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(5)),
-                              child: const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
                                   child: TextField(
+                                    controller: passwordController,
                                     obscureText: true,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                         border: InputBorder.none,
                                         hintText: 'Password'),
                                   ))),
@@ -81,13 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5),
                                     )),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomePage()));
-                                },
+                                onPressed: () => loginClick(),
                                 child: Container(
                                     padding: const EdgeInsets.fromLTRB(
                                         60, 15, 60, 15),

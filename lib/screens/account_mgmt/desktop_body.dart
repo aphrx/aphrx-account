@@ -5,7 +5,9 @@ import 'package:account_frontend/widgets/sidebar.dart';
 import 'package:flutter/material.dart';
 
 class DesktopBody extends StatefulWidget {
-  const DesktopBody({Key? key}) : super(key: key);
+  var user;
+
+  DesktopBody({Key? key, @required this.user}) : super(key: key);
 
   @override
   State<DesktopBody> createState() => _DesktopBodyState();
@@ -15,7 +17,7 @@ class _DesktopBodyState extends State<DesktopBody> {
   int currIndex = 0;
 
   Widget contentSwitch(currIndex) {
-    if (currIndex == 0) return const Profile();
+    if (currIndex == 0) return Profile(user: widget.user);
     if (currIndex == 1) return const Apps();
     if (currIndex == 2) {
       return const Settings();

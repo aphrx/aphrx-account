@@ -20,6 +20,9 @@ class MobileBody extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black),
         ),
         body: Container(
-            padding: const EdgeInsets.all(20), child: const Profile()));
+            padding: const EdgeInsets.all(20),
+            child: Profile(
+              user: '{"id":1,"username":"string"}',
+            )));
   }
 }
