@@ -25,7 +25,7 @@ class DesktopButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             )),
-        onPressed: () => pressed,
+        onPressed: () => pressed(),
         child: Container(
             padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
             child: Row(

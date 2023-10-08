@@ -1,9 +1,58 @@
+import 'package:account_frontend/tabs/apps.dart';
 import 'package:account_frontend/tabs/profile.dart';
+import 'package:account_frontend/tabs/settings.dart';
 import 'package:account_frontend/widgets/sidebar.dart';
 import 'package:flutter/material.dart';
 
-class MobileBody extends StatelessWidget {
-  const MobileBody({Key? key}) : super(key: key);
+class MobileBody extends StatefulWidget {
+  var user;
+  var about;
+  var links;
+  var availableApps;
+  var unavailableApps;
+  var settingsList;
+
+  MobileBody(
+      {Key? key,
+      required this.user,
+      required this.about,
+      required this.links,
+      required this.availableApps,
+      required this.unavailableApps,
+      required this.settingsList})
+      : super(key: key);
+
+  @override
+  State<MobileBody> createState() => _MobileBodyState();
+}
+
+class _MobileBodyState extends State<MobileBody> {
+  int currIndex = 0;
+
+  Widget contentSwitch(currIndex) {
+    if (widget.user != null) {
+      if (currIndex == 0) {
+        return Profile(
+            user: widget.user, about: widget.about, links: widget.links);
+      }
+      if (currIndex == 1)
+        return Apps(
+            gridAxis: 1,
+            availableApps: widget.availableApps,
+            unavailableApps: widget.unavailableApps);
+      if (currIndex == 2) {
+        return SettingsTab(gridAxis: 1, settingsList: widget.settingsList);
+      } else {
+        return const Placeholder();
+      }
+    } else {
+      return Container();
+    }
+  }
+
+  void changeIndex(int ind) {
+    setState(() => currIndex = ind);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +60,7 @@ class MobileBody extends StatelessWidget {
         drawer: Drawer(
           backgroundColor: Colors.transparent,
           child: SideBar(
-            callback: (int) {},
+            callback: changeIndex,
           ),
         ),
         appBar: AppBar(
@@ -20,9 +69,7 @@ class MobileBody extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black),
         ),
         body: Container(
-            padding: const EdgeInsets.all(20),
-            child: Profile(
-              user: '{"id":1,"username":"string"}',
-            )));
+            // padding: const EdgeInsets.all(20),
+            child: contentSwitch(currIndex)));
   }
 }

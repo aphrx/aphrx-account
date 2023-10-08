@@ -1,3 +1,5 @@
+import 'package:account_frontend/api/auth.dart';
+import 'package:account_frontend/screens/account_mgmt/home_page.dart';
 import 'package:account_frontend/screens/login_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,19 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        home: LoginPage());
+        home: FutureBuilder<bool>(
+          future: isLoggedIn(),
+          builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+            // return redirectPage(snapshot.data);
+            if (snapshot.data == true) {
+              return const HomePage();
+            } else if (snapshot.data == false) {
+              return const LoginPage();
+            } else {
+              return Container();
+            }
+          },
+        ));
     // home: SignupPage());
   }
 }

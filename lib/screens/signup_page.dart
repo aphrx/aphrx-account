@@ -1,3 +1,5 @@
+import 'package:account_frontend/api/auth.dart';
+import 'package:account_frontend/screens/account_mgmt/home_page.dart';
 import 'package:account_frontend/screens/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -9,13 +11,42 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    usernameController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    super.dispose();
+  }
+
+  void registerClick() async {
+    final res = await Register(usernameController.text, passwordController.text,
+        firstNameController.text, lastNameController.text);
+    if (res.statusCode == 200) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+    } else {
+      print('Error Code: ' + res.statusCode);
+      print(res.body);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
             child: Center(
                 child: Container(
-                    padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
+                    padding: const EdgeInsets.fromLTRB(60, 0, 60, 0),
                     decoration: BoxDecoration(
                         // color: Colors.white,
                         // boxShadow: [
@@ -30,7 +61,7 @@ class _SignupPageState extends State<SignupPage> {
                         // color: Colors.blue[300],
                         borderRadius: BorderRadius.circular(5)),
                     width: 500,
-                    height: 500,
+                    height: 800,
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,10 +77,42 @@ class _SignupPageState extends State<SignupPage> {
                                   color: Colors.white,
                                   border: Border.all(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(5)),
-                              child: const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
                                   child: TextField(
-                                    decoration: InputDecoration(
+                                    controller: firstNameController,
+                                    decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'First Name'),
+                                  ))),
+                          const SizedBox(height: 20),
+                          Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: TextField(
+                                    controller: lastNameController,
+                                    decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'Last Name'),
+                                  ))),
+                          const SizedBox(height: 20),
+                          Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: TextField(
+                                    controller: usernameController,
+                                    decoration: const InputDecoration(
                                         border: InputBorder.none,
                                         hintText: 'Username'),
                                   ))),
@@ -59,11 +122,13 @@ class _SignupPageState extends State<SignupPage> {
                                   color: Colors.white,
                                   border: Border.all(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(5)),
-                              child: const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
                                   child: TextField(
+                                    controller: passwordController,
                                     obscureText: true,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                         border: InputBorder.none,
                                         hintText: 'Password'),
                                   ))),
@@ -73,11 +138,13 @@ class _SignupPageState extends State<SignupPage> {
                                   color: Colors.white,
                                   border: Border.all(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(5)),
-                              child: const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
                                   child: TextField(
+                                    controller: confirmPasswordController,
                                     obscureText: true,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                         border: InputBorder.none,
                                         hintText: 'Confirm Password'),
                                   ))),
@@ -94,7 +161,7 @@ class _SignupPageState extends State<SignupPage> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5),
                                     )),
-                                onPressed: () {},
+                                onPressed: () => registerClick(),
                                 child: Container(
                                     padding: const EdgeInsets.fromLTRB(
                                         60, 15, 60, 15),

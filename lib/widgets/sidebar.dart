@@ -1,12 +1,36 @@
+import 'package:account_frontend/api/auth.dart';
+import 'package:account_frontend/screens/login_page.dart';
 import 'package:account_frontend/widgets/desktop_button.dart';
 import 'package:flutter/material.dart';
 
 typedef Callback = void Function(int val);
 
-class SideBar extends StatelessWidget {
+class SideBar extends StatefulWidget {
   const SideBar({Key? key, required this.callback}) : super(key: key);
 
   final void Function(int) callback;
+
+  @override
+  State<SideBar> createState() => _SideBarState();
+}
+
+class _SideBarState extends State<SideBar> {
+  void logoutClick() async {
+    print("Logout clicked");
+    final res = await Logout();
+    if (res.statusCode == 200) {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => LoginPage()),
+          ModalRoute.withName(
+              '/') // Replace this with your root screen's route name (usually '/')
+          );
+      print("Logging out");
+    } else {
+      print('Error Code: ' + res.statusCode);
+      print(res.body);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +99,7 @@ class SideBar extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
                           )),
-                      onPressed: () => callback(0),
+                      onPressed: () => widget.callback(0),
                       child: Container(
                           padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
                           child: const Row(
@@ -112,7 +136,7 @@ class SideBar extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
                           )),
-                      onPressed: () => callback(1),
+                      onPressed: () => widget.callback(1),
                       child: Container(
                           padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
                           child: const Row(
@@ -149,7 +173,7 @@ class SideBar extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
                           )),
-                      onPressed: () => callback(2),
+                      onPressed: () => widget.callback(2),
                       child: Container(
                           padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
                           child: const Row(
@@ -188,7 +212,7 @@ class SideBar extends StatelessWidget {
                       buttonText: const Text("Logout",
                           style: TextStyle(fontSize: 16, color: Colors.red),
                           textAlign: TextAlign.center),
-                      pressed: () => null)
+                      pressed: () => logoutClick())
                 ],
               ))),
     );

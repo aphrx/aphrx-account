@@ -29,7 +29,6 @@ class _LoginPageState extends State<LoginPage> {
 
   void loginClick() async {
     final res = await Login(usernameController.text, passwordController.text);
-    print(res.statusCode);
     if (res.statusCode == 200) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const HomePage()));
