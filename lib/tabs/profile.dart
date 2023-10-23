@@ -61,8 +61,10 @@ class _ProfileState extends State<Profile> {
                     children: [
                       const SizedBox(width: 40),
                       Text(widget.user.firstName + " " + widget.user.lastName,
-                          style: const TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.w800)),
+                          style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w800,
+                              color: Theme.of(context).colorScheme.onPrimary)),
                       IconButton(
                         icon: const Icon(Icons.edit),
                         onPressed: () => showDialog(
@@ -74,16 +76,20 @@ class _ProfileState extends State<Profile> {
                     ]),
                 const SizedBox(height: 20),
 
-                Text(widget.user.bio),
+                Text(widget.user.bio,
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary)),
 
                 const SizedBox(height: 20),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(width: 40),
-                      const Text("About",
+                      Text("About",
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.onPrimary)),
                       IconButton(
                           onPressed: () => showDialog(
                               context: context,
@@ -99,6 +105,8 @@ class _ProfileState extends State<Profile> {
                   child: Text(
                     widget.about.body,
                     textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -106,9 +114,11 @@ class _ProfileState extends State<Profile> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const SizedBox(width: 40),
-                      const Text("Links",
+                      Text("Links",
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.onPrimary)),
                       IconButton(
                           onPressed: () => showDialog(
                               context: context,
@@ -173,29 +183,37 @@ class _ProfileState extends State<Profile> {
                           child: profileImage(widget.user.avatarUrl))),
                 ),
                 Text(widget.user.firstName + " " + widget.user.lastName,
-                    style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.w800)),
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w800,
+                        color: Theme.of(context).colorScheme.onPrimary)),
                 const SizedBox(height: 20),
 
-                Text(widget.user.bio),
+                Text(widget.user.bio,
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary)),
 
                 const SizedBox(height: 20),
-                const Text("About",
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                Text("About",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onPrimary)),
 
                 const SizedBox(height: 20),
                 Align(
                   alignment: Alignment.center,
-                  child: Text(
-                    widget.about.body,
-                    textAlign: TextAlign.center,
-                  ),
+                  child: Text(widget.about.body,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onPrimary)),
                 ),
                 const SizedBox(height: 20),
-                const Text("Links",
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                Text("Links",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onPrimary)),
                 const SizedBox(height: 20),
                 for (var link in widget.links)
                   Column(children: [

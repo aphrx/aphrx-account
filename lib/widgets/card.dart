@@ -46,7 +46,7 @@ class CardWidget extends StatelessWidget {
     return Container(
         child: Column(children: [
       InkWell(
-          onTap: () => _launchUrl(),
+          onTap: () => onClick(),
           child: Container(
               width: double.infinity,
               // width: 300,

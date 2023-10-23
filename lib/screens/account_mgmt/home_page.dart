@@ -5,7 +5,6 @@ import 'package:account_frontend/api/auth.dart';
 import 'package:account_frontend/api/settings.dart';
 import 'package:account_frontend/screens/account_mgmt/desktop_body.dart';
 import 'package:account_frontend/screens/account_mgmt/mobile_body.dart';
-import 'package:account_frontend/screens/account_mgmt/responsive_layout.dart';
 import 'package:account_frontend/utils/models.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +22,11 @@ class _HomePageState extends State<HomePage> {
   var availableApps;
   var unavailableApps;
   var settingsList;
+  var tabIndex = 0;
+
+  void changeIndex(int ind) {
+    setState(() => tabIndex = ind);
+  }
 
   getUserDetails() async {
     final res = await GetUser();
@@ -86,29 +90,42 @@ class _HomePageState extends State<HomePage> {
     getUserDetails();
     getAboutDetails();
     getLinksDetails();
-    getAvailableApps();
-    getUnavailableApps();
-    getSettings();
+    // getAvailableApps();
+    // getUnavailableApps();
+    // getSettings();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: ResponsiveLayout(
-      mobileBody: MobileBody(
-          user: user,
-          about: about,
-          links: links,
-          availableApps: availableApps,
-          unavailableApps: unavailableApps,
-          settingsList: settingsList),
-      desktopBody: DesktopBody(
-          user: user,
-          about: about,
-          links: links,
-          availableApps: availableApps,
-          unavailableApps: unavailableApps,
-          settingsList: settingsList),
-    ));
+    return LayoutBuilder(builder: (context, constraints) {
+      if (constraints.maxWidth < 600) {
+        return Scaffold(
+            body: MobileBody(
+                user: user,
+                about: about,
+                links: links,
+                availableApps: availableApps,
+                unavailableApps: unavailableApps,
+                settingsList: settingsList,
+                tabIndex: tabIndex,
+                changeIndex: changeIndex));
+      } else {
+        return Scaffold(
+            body: DesktopBody(
+                user: user,
+                about: about,
+                links: links,
+                availableApps: availableApps,
+                unavailableApps: unavailableApps,
+                settingsList: settingsList,
+                tabIndex: tabIndex,
+                changeIndex: changeIndex));
+      }
+    });
+    //   return Scaffold(
+    //       body: ResponsiveLayout(
+    //     mobileBody: ,
+    //     desktopBody: );
+    // }
   }
 }

@@ -41,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
             child: Center(
                 child: Container(
@@ -53,39 +54,47 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Text('Sign in',
+                          Text('Sign in',
                               style: TextStyle(
                                   fontWeight: FontWeight.w200,
                                   fontSize: 24,
-                                  color: Colors.black)),
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary)),
                           const SizedBox(height: 20),
                           Container(
                               decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: Theme.of(context).colorScheme.primary,
                                   border: Border.all(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(5)),
                               child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20),
                                   child: TextField(
+                                    cursorColor:
+                                        Theme.of(context).colorScheme.onPrimary,
                                     controller: usernameController,
-                                    decoration: const InputDecoration(
+                                    decoration: InputDecoration(
                                         border: InputBorder.none,
                                         hintText: 'Username'),
                                   ))),
                           const SizedBox(height: 20),
                           Container(
                               decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: Theme.of(context).colorScheme.primary,
                                   border: Border.all(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(5)),
                               child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20),
                                   child: TextField(
+                                    cursorColor:
+                                        Theme.of(context).colorScheme.onPrimary,
                                     controller: passwordController,
                                     obscureText: true,
-                                    decoration: const InputDecoration(
+                                    decoration: InputDecoration(
+                                        fillColor: Theme.of(context)
+                                            .colorScheme
+                                            .onPrimary,
                                         border: InputBorder.none,
                                         hintText: 'Password'),
                                   ))),
@@ -106,13 +115,18 @@ class _LoginPageState extends State<LoginPage> {
                                 child: Container(
                                     padding: const EdgeInsets.fromLTRB(
                                         60, 15, 60, 15),
-                                    child: const Text("Sign in")),
+                                    child: const Text("Sign in",
+                                        style: TextStyle(color: Colors.white))),
                               )),
                           const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text("New to Aphrx? "),
+                              Text("New to Aphrx? ",
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary)),
                               GestureDetector(
                                 onTap: () {
                                   Navigator.push(
@@ -129,9 +143,16 @@ class _LoginPageState extends State<LoginPage> {
                             ],
                           ),
                           const SizedBox(height: 20),
-                          const Divider(),
+                          Divider(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimary
+                                  .withOpacity(0.2)),
                           const SizedBox(height: 20),
-                          const Text("Trouble signing in?")
+                          Text("Trouble signing in?",
+                              style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary))
                         ])))));
   }
 }
